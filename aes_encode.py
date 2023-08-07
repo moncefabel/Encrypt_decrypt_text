@@ -27,4 +27,12 @@ mydecrypt = AES.new(key, AES.MODE_CFB, ciphertext[:16])
 # Use the newly generated AES object to decrypt the encrypted ciphertext
 decrypttext = mydecrypt.decrypt(ciphertext[16:])
 
+# output
+file_out = open("encrypted.bin", "wb")
+file_out.write(ciphertext[16:])
+file_out.close()
 
+print("The key k is: ", key)
+print("iv is: ", b2a_hex(ciphertext)[:16])
+print("The encrypted data is: ", b2a_hex(ciphertext)[16:])
+print("The decrypted data is: ", decrypttext.decode())
